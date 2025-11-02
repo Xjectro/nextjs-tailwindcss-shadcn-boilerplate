@@ -1,0 +1,47 @@
+{
+  "Common": {
+    "appName": "Leornia Dashboard",
+    "welcome": "Hoş geldiniz",
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "create": "Oluştur",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "sort": "Sırala",
+    "actions": "İşlemler",
+    "noData": "Veri bulunamadı",
+    "confirm": "Onayla",
+    "back": "Geri",
+    "next": "İleri",
+    "previous": "Önceki",
+    "submit": "Gönder"
+  },
+  "HomePage": {
+    "title": "Leornia Dashboard'a Hoş Geldiniz",
+    "description": "Ustalığa Giden Kişisel Yolunuz",
+    "getStarted": "Başlayın",
+    "learnMore": "Daha Fazla Bilgi"
+  },
+  "Validation": {
+    "required": "Bu alan zorunludur",
+    "invalidEmail": "Geçersiz e-posta adresi",
+    "passwordTooShort": "Şifre en az 8 karakter olmalıdır",
+    "passwordsDoNotMatch": "Şifreler eşleşmiyor",
+    "invalidFormat": "Geçersiz format"
+  },
+  "Error": {
+    "title": "Bir şeyler ters gitti!",
+    "description": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+    "backToHome": "Ana Sayfaya Dön",
+    "retry": "Tekrar Dene",
+    "404": "Sayfa Bulunamadı",
+    "404Description": "Aradığınız sayfa mevcut değil.",
+    "500": "Sunucu Hatası",
+    "500Description": "Bizim tarafımızda bir sorun oluştu."
+  }
+}

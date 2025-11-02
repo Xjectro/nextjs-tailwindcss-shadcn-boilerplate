@@ -1,0 +1,47 @@
+{
+  "Common": {
+    "appName": "Leornia Dashboard",
+    "welcome": "Welcome",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "actions": "Actions",
+    "noData": "No data available",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit"
+  },
+  "HomePage": {
+    "title": "Leornia Dashboard",
+    "description": "Your Personal Path to Mastery",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "Validation": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "invalidFormat": "Invalid format"
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "An unexpected error occurred. Please try again.",
+    "backToHome": "Back to Home",
+    "retry": "Retry",
+    "404": "Page Not Found",
+    "404Description": "The page you are looking for does not exist.",
+    "500": "Internal Server Error",
+    "500Description": "Something went wrong on our end."
+  }
+}
