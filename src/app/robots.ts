@@ -1,5 +1,4 @@
 import type { MetadataRoute } from 'next';
-import { headers } from 'next/headers';
 
 /**
  * Dynamic base URL resolution for robots.txt generation
@@ -53,26 +52,6 @@ import { headers } from 'next/headers';
  * @category SEO Utilities
  */
 async function getBaseUrl(): Promise<string> {
-  try {
-    // Attempt to resolve URL from incoming request headers
-    // This provides the most accurate URL for server-side generation
-    const headersList = await headers();
-    const host = headersList.get('host');
-
-    if (host) {
-      // Determine protocol based on forwarded headers or host characteristics
-      // Prioritize X-Forwarded-Proto for proxy/load balancer scenarios
-      const protocol =
-        headersList.get('x-forwarded-proto') ||
-        (host.includes('localhost') ? 'http' : 'https');
-      return `${protocol}://${host}`;
-    }
-  } catch (error) {
-    // Headers may not be available in all contexts (e.g., build time)
-    // Gracefully degrade to environment-based detection
-    console.warn('Headers access failed, using fallback:', error);
-  }
-
   // Vercel deployment detection
   // VERCEL_URL is automatically provided in Vercel environments
   if (process.env.VERCEL_URL) {
@@ -92,9 +71,9 @@ async function getBaseUrl(): Promise<string> {
   }
 
   // Environment variable fallback for custom configurations
-  // NEXT_PUBLIC_APP_URL allows manual URL specification
-  if (process.env.NEXT_PUBLIC_APP_URL) {
-    return process.env.NEXT_PUBLIC_APP_URL;
+  // NEXT_PUBLIC_URL allows manual URL specification
+  if (process.env.NEXT_PUBLIC_URL) {
+    return process.env.NEXT_PUBLIC_URL;
   }
 
   // Final fallback based on environment
