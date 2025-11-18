@@ -1,5 +1,5 @@
 /**
- * Home Page Component
+ * Get Started Page Component
  *
  * The main landing page that demonstrates the boilerplate features
  * including theme switching and internationalization.
@@ -19,17 +19,17 @@ import { generateMetadata } from '@/lib/seo';
 import { Fragment } from 'react';
 
 export const metadata = generateMetadata({
-  title: 'Home - Next.js TailwindCSS ShadCN Boilerplate',
+  title: 'Get Started - Next.js TailwindCSS ShadCN Boilerplate',
   description:
     'Welcome to the Next.js TailwindCSS ShadCN Boilerplate. A modern, production-ready boilerplate with Next.js 15, TailwindCSS 4, ShadCN UI, and internationalization.',
 });
 
 /**
- * Home Page
+ * Get Started Page
  *
  * Displays a welcome message and demonstrates the theme toggle functionality.
  */
-export default function HomePage() {
+export default function GetStartedPage() {
   return (
     <Fragment>
       <div className="min-h-screen bg-background text-foreground">
@@ -112,7 +112,7 @@ export default function HomePage() {
             {/* Action Buttons */}
             <div className="flex justify-center gap-4">
               <Button variant="default" asChild>
-                <Link href="/get-started">Get Started</Link>
+                <Link href="/">Get Started</Link>
               </Button>
             </div>
           </main>

@@ -55,7 +55,7 @@ import { routing } from '@/i18n/routing';
  * @category SEO Utilities
  */
 async function getBaseUrl(): Promise<string> {
-    // Vercel deployment detection
+  // Vercel deployment detection
   // VERCEL_URL is automatically provided in Vercel environments
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;

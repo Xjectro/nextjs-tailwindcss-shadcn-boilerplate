@@ -2,6 +2,7 @@
  * Localized Layout
  */
 
+import { NavigationEvents } from '@/components/layout/navigation-events';
 import { ClientProviders } from '@/components/providers/client-provider';
 import { ServerProviders } from '@/components/providers/server-providers';
 import { Layout } from '@/components/ui/react/design-system';
@@ -64,7 +65,10 @@ export default async function LocaleLayout({ children, params }: Props) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ServerProviders locale={locale}>
-          <ClientProviders>{children}</ClientProviders>
+          <ClientProviders>
+            <NavigationEvents />
+            {children}
+          </ClientProviders>
         </ServerProviders>
       </body>
     </Layout>

@@ -348,7 +348,7 @@ export const createAction = <TInput = unknown, TOutput = unknown>({
       if (tags) {
         const tagList = Array.isArray(tags) ? tags : [tags];
         for (const tag of tagList) {
-          revalidateTag(tag);
+          revalidateTag(tag, tag);
         }
       }
 

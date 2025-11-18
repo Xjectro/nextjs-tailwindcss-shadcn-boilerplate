@@ -1,5 +1,5 @@
-import radixPlugin from 'tailwindcss-radix';
 import tailwindcssAnimate from 'tailwindcss-animate';
+import radixPlugin from 'tailwindcss-radix';
 
 const config = {
   content: [

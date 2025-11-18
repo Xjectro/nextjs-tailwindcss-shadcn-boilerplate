@@ -1,3 +1,4 @@
+@import 'nprogress/nprogress.css';
 @import 'tailwindcss';
 @config '../../tailwind.config.ts';
 
@@ -86,6 +87,6 @@
   }
 
   body {
-    @apply min-h-screen border-border bg-background font-poppins text-foreground;
+    @apply min-h-screen border-border bg-background font-sans text-foreground;
   }
 }
