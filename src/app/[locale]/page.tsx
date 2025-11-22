@@ -36,7 +36,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-8">
           {/* Header with Theme Toggle */}
           <header className="mb-8 flex items-center justify-between">
-            <h1 className="text-3xl font-bold">Next.js Boilerplate</h1>
+            <h1 className="text-3xl font-bold">Next.js Boilerplate (Home)</h1>
             <ThemeToggle />
           </header>
 

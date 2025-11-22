@@ -36,7 +36,7 @@ export default function GetStartedPage() {
         <div className="container mx-auto px-4 py-8">
           {/* Header with Theme Toggle */}
           <header className="mb-8 flex items-center justify-between">
-            <h1 className="text-3xl font-bold">Next.js Boilerplate</h1>
+            <h1 className="text-3xl font-bold">Next.js Boilerplate (Get Started)</h1>
             <ThemeToggle />
           </header>
 
@@ -112,7 +112,7 @@ export default function GetStartedPage() {
             {/* Action Buttons */}
             <div className="flex justify-center gap-4">
               <Button variant="default" asChild>
-                <Link href="/">Get Started</Link>
+                <Link href="/">Home</Link>
               </Button>
             </div>
           </main>
