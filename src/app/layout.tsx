@@ -1,41 +1,55 @@
 /**
- * Root Layout Component
- *
- * This is the root layout that wraps all pages in the application.
- * It provides the basic HTML structure and global providers.
- *
- * Note: The actual content rendering happens in the locale-specific layout
- * at /app/[locale]/layout.tsx which handles internationalization.
+ * Root Layout
  */
 
+import { NavigationEvents } from '@/components/layout/navigation-events';
+import { ClientProviders } from '@/components/providers/client-provider';
+import { ServerProviders } from '@/components/providers/server-providers';
+import { Layout } from '@/components/ui/react/design-system';
 import { routing } from '@/i18n/routing';
-import type { Metadata } from 'next';
+import '@/styles/globals.css';
+import { getLocale, setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: '/',
-    languages: routing.locales.reduce(
-      (acc, locale) => {
-        acc[locale] = `/${locale}`;
-        return acc;
-      },
-      {} as Record<string, string>,
-    ),
-  },
+type Props = {
+  children: React.ReactNode;
 };
 
 /**
- * Root Layout Component
- *
- * This layout only provides the children prop and metadata.
- * The actual HTML structure and providers are handled in the locale-specific layout.
- *
- * @param children - The page content to render
+ * Generate static params for all supported locales
+ * This enables static generation at build time for all locales
  */
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return children;
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+/**
+ * Localized layout component
+ * Validates locale and provides i18n context to all child components
+ */
+export default async function RootLayout({ children }: Props) {
+  // Await params as required by Next.js 15
+  const locale = await getLocale();
+
+  // Validate that the incoming locale is valid
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  // Enable static rendering for this locale
+  setRequestLocale(locale);
+
+  return (
+    <Layout lang={locale} suppressHydrationWarning>
+      <body className="overflow-x-hidden">
+        <ServerProviders locale={locale}>
+          <ClientProviders>
+            <NavigationEvents />
+            {children}
+          </ClientProviders>
+        </ServerProviders>
+      </body>
+    </Layout>
+  );
 }

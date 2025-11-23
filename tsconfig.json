@@ -29,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/modules/common/types/index.dts",
-    ".next/dev/types/**/*.ts"
-, "postcss.config.mjs"  ],
+    ".next/dev/types/**/*.ts",
+    "postcss.config.mjs"
+  ],
   "exclude": ["node_modules"]
 }
