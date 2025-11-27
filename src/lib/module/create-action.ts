@@ -1,7 +1,3 @@
-'use server';
-
-import { revalidateTag } from 'next/cache';
-
 /**
  * Supported HTTP methods for API actions
  *
@@ -265,7 +261,6 @@ export const createAction = <TInput = unknown, TOutput = unknown>({
   input,
   method = 'POST',
   headers = { 'Content-Type': 'application/json' },
-  tags,
   transform,
 }: ActionConfig<TInput, TOutput>): ActionFunction<TInput, TOutput> => {
   return async (data?: TInput): Promise<TOutput> => {
@@ -345,12 +340,7 @@ export const createAction = <TInput = unknown, TOutput = unknown>({
 
       // Trigger cache revalidation for specified tags
       // This integrates with Next.js caching system for optimal performance
-      if (tags) {
-        const tagList = Array.isArray(tags) ? tags : [tags];
-        for (const tag of tagList) {
-          revalidateTag(tag, tag);
-        }
-      }
+      // TODO: Add revalidetTag function
 
       return result;
     } catch (error) {
