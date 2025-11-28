@@ -59,7 +59,7 @@ type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
  * ```
  */
 interface ActionConfig<TInput = unknown, TOutput = unknown> {
-  input: string;
+  input: string | ((data: TInput) => string);
   method?: HttpMethod;
   headers?: HeadersInit;
   tags?: string | string[];
@@ -279,7 +279,10 @@ export const createAction = <TInput = unknown, TOutput = unknown>({
       };
 
       // Construct the full URL using environment-based API URL
-      const url = new URL(`${process.env.API_URL}${input}`);
+      const endpoint =
+        typeof input === 'function' ? input(requestData as TInput) : input;
+
+      const url = new URL(`${process.env.API_URL}${endpoint}`);
 
       // Handle GET requests with query parameter serialization
       // Convert object data to URL search parameters for GET requests
