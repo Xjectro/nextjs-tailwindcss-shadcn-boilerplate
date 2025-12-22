@@ -22,11 +22,11 @@ export interface SeoOptions extends Partial<Metadata> {
 }
 
 /**
- * Generate Metadata for Next.js 16 App Router with SEO support
+ * Build Metadata for Next.js 16 App Router with SEO support
  * @param options - SEO and metadata options
  * @returns Metadata object compatible with Next.js
  */
-export function generateMetadata(options: SeoOptions): Metadata {
+export function buildMetadata(options: SeoOptions): Metadata {
   const baseUrl = options.url || process.env.NEXT_PUBLIC_URL || '';
 
   // OpenGraph defaults
