@@ -5,20 +5,20 @@
  * including theme switching and internationalization.
  */
 
-import { Button } from '@/components/ui/primitives/button';
+import { Link } from '@/i18n/navigation';
+import { buildSEO } from '@/shared/lib/seo';
+import { Button } from '@/shared/ui/primitives/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/primitives/card';
-import { ThemeToggle } from '@/components/ui/react/theme-toggle';
-import { Link } from '@/i18n/navigation';
-import { generateMetadata } from '@/lib/seo';
+} from '@/shared/ui/primitives/card';
+import { ThemeToggle } from '@/shared/ui/react/theme-toggle';
 import { Fragment } from 'react';
 
-export const metadata = generateMetadata({
+export const metadata = buildSEO({
   title: 'Home - Next.js TailwindCSS ShadCN Boilerplate',
   description:
     'Welcome to the Next.js TailwindCSS ShadCN Boilerplate. A modern, production-ready boilerplate with Next.js 15, TailwindCSS 4, ShadCN UI, and internationalization.',

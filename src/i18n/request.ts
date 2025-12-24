@@ -14,7 +14,7 @@
  * @see https://next-intl-docs.vercel.app/docs/usage/configuration
  */
 
-import logger from '@/lib/logger';
+import { logger } from '@/services/logger/logger.service';
 import { getRequestConfig } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from './routing';

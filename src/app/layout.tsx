@@ -2,11 +2,11 @@
  * Root Layout
  */
 
-import { NavigationEvents } from '@/components/layout/navigation-events';
-import { ClientProviders } from '@/components/providers/client-provider';
-import { ServerProviders } from '@/components/providers/server-providers';
-import { Layout } from '@/components/ui/react/design-system';
 import { routing } from '@/i18n/routing';
+import { NavigationEvents } from '@/shared/layout/navigation-events';
+import { ClientProviders } from '@/shared/providers/client-provider';
+import { ServerProviders } from '@/shared/providers/server-providers';
+import { Layout } from '@/shared/ui/react/design-system';
 import '@/styles/globals.css';
 import { getLocale, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';

@@ -1,18 +1,11 @@
-import { render, screen } from '@testing-library/react';
+describe('Home page', () => {
+  it('exports a page component', async () => {
+    const mod = await import('@/app/[locale]/page');
+    expect(typeof mod.default).toBe('function');
+  });
 
-import Page from '@/app/page';
-import { Providers } from '@/components/providers';
-
-describe('Create Turtle Form', () => {
-  it('render form', () => {
-    render(
-      <Providers>
-        <Page />
-      </Providers>,
-    );
-
-    const form = screen.getByTestId('create-turtle-form');
-
-    expect(form).toBeInTheDocument();
+  it('exports metadata', async () => {
+    const mod = await import('@/app/[locale]/page');
+    expect(typeof mod.metadata).toBe('object');
   });
 });

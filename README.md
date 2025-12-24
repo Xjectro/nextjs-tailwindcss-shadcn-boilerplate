@@ -1,220 +1,130 @@
-# Next.js TailwindCSS + shadcn/ui Boilerplate
+# Next.js + TailwindCSS Boilerplate (App Router)
 
-<div align="center">
-  <img src="https://img.shields.io/badge/Next.js-15.3.3-black?style=for-the-badge&logo=next.js" alt="Next.js" />
-  <img src="https://img.shields.io/badge/React-19.0.0-blue?style=for-the-badge&logo=react" alt="React" />
-  <img src="https://img.shields.io/badge/TypeScript-5.x-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/TailwindCSS-4.x-38bdf8?style=for-the-badge&logo=tailwind-css" alt="TailwindCSS" />
-  <img src="https://img.shields.io/badge/shadcn/ui-latest-000000?style=for-the-badge" alt="shadcn/ui" />
-</div>
+Minimal, production-lean Next.js starter with:
 
-<p align="center">
-  A modern, production-ready Next.js boilerplate with TailwindCSS, shadcn/ui, internationalization, and comprehensive development tools.
-</p>
+- Next.js **16** (App Router) + React **19** + TypeScript
+- TailwindCSS **4** + a small UI layer (shadcn/ui-style primitives live in this repo)
+- Internationalization with `next-intl` (`en`, `tr`)
+- Storybook **10** on **Webpack** (`@storybook/nextjs`)
+- Jest + Testing Library
 
-## ✨ Features
-
-- 🚀 **Next.js 15** with App Router and React 19
-- 🎨 **TailwindCSS 4** for modern styling
-- 🧩 **shadcn/ui** components for beautiful UI
-- 🌍 **Internationalization** with next-intl
-- 🌗 **Dark/Light theme** support
-- 📱 **Fully responsive** design
-- 🔧 **TypeScript** for type safety
-- 🧪 **Jest & Testing Library** for testing
-- 📏 **ESLint & Prettier** for code quality
-- 🗃️ **Prisma** ORM ready
-- 🔄 **Redux Toolkit** for state management
-- 📊 **Statsig** analytics integration
-- 🎯 **Form handling** with React Hook Form + Zod
-- 🎵 **Toast notifications** with Sonner
-- 📁 **Well-organized** project structure
-
-## 🚀 Quick Start
-
-### Prerequisites
+## Requirements
 
 - Node.js 18+
-- npm, yarn, or pnpm
+- npm (or any package manager that can read `package-lock.json`)
 
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/Xjectro/nextjs-tailwindcss-shadcn-boilerplate.git
-   cd nextjs-tailwindcss-shadcn-boilerplate
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
-
-3. **Start the development server**
-
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
-
-4. **Open your browser**
-   ```
-   http://localhost:3000
-   ```
-
-## 📁 Project Structure
-
-```
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── [locale]/          # Internationalized routes
-│   │   │   ├── layout.tsx     # Locale-specific layout
-│   │   │   └── page.tsx       # Home page
-│   │   ├── layout.tsx         # Root layout
-│   │   ├── robots.ts          # Robots.txt generation
-│   │   └── sitemap.ts         # Sitemap generation
-│   ├── components/            # Reusable components
-│   │   ├── layout/           # Layout components
-│   │   ├── providers/        # Context providers
-│   │   └── ui/               # UI components
-│   │       ├── primitives/   # shadcn/ui primitives
-│   │       └── react/        # Custom React components
-│   ├── hooks/                # Custom React hooks
-│   ├── i18n/                 # Internationalization config
-│   ├── lib/                  # Utility libraries
-│   ├── modules/              # Feature modules
-│   ├── styles/               # Global styles
-│   └── utils/                # Utility functions
-├── messages/                 # Translation files
-├── __tests__/               # Test files
-└── public/                  # Static assets
-```
-
-## 🛠️ Available Scripts
+## Getting started
 
 ```bash
-# Development
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-
-# Code Quality
-npm run lint         # Run ESLint
-npm run lint:fix     # Fix ESLint issues
-npm run format       # Format code with Prettier
-
-# Testing
-npm run test         # Run tests with Jest
+npm install
+npm run dev
 ```
 
-## 🎨 UI Components
+Open http://localhost:3000
 
-This boilerplate includes a comprehensive set of shadcn/ui components:
+## Scripts
 
-- **Form Components**: Input, Select, Button, Label
-- **Layout Components**: Card, Dialog, Sheet, Sidebar
-- **Feedback Components**: Alert, Toast (Sonner), Skeleton
-- **Navigation**: Pagination
-- **Data Display**: Badge, Separator
-- **Utility**: Tooltip, Spinner
+```bash
+# App
+npm run dev
+npm run build
+npm run start
 
-## 🌍 Internationalization
+# Quality
+npm run lint        # eslint ./src
+npm run lint:fix    # eslint ./src --fix
+npm run format      # prettier --write .
 
-The project supports multiple languages using `next-intl`:
+# Tests
+npm run test
 
-- 🇺🇸 English (`en`)
-- 🇹🇷 Turkish (`tr`)
+# Storybook
+npm run storybook
+npm run build-storybook
+```
 
-### Adding New Languages
+## Environment variables
 
-1. Create a new message file in `messages/[locale].json`
-2. Update the `src/i18n/routing.ts` configuration
-3. Add translations to your message files
+Create a `.env` (or use `.env.example`) as needed.
 
-## 🌗 Theme Support
+- `API_URL` – Base URL used by the server-side fetch wrapper in `src/services/http/client.ts`.
+- `NEXT_PUBLIC_URL` – Optional base URL used by the SEO helper (`src/shared/lib/seo.ts`).
 
-Built-in dark/light theme switching with:
+## Project structure
 
-- System preference detection
-- Manual theme toggle
-- Persistent theme storage
-- TailwindCSS dark mode classes
+```text
+.
+├─ src/
+│  ├─ app/                 # Next.js App Router
+│  │  ├─ [locale]/         # Locale segment (pages live here)
+│  │  ├─ layout.tsx        # Root layout (providers + locale setup)
+│  │  ├─ robots.ts         # robots.txt
+│  │  └─ sitemap.ts        # sitemap.xml
+│  ├─ features/            # Feature-oriented code (domain/grouped)
+│  ├─ i18n/                # next-intl routing + request config
+│  ├─ services/            # Cross-cutting services (http/auth/logger/storage)
+│  ├─ shared/              # Shared utilities, UI, hooks, providers, layout
+│  ├─ stories/             # Storybook stories & examples
+│  └─ styles/              # globals.css, themes.css
+├─ messages/               # i18n message catalogs (en.json, tr.json)
+├─ __tests__/              # Jest tests
+├─ .storybook/             # Storybook config
+└─ storybook-static/       # Storybook build output (generated)
+```
 
-## 🧪 Testing
+### Import alias
 
-The boilerplate includes a complete testing setup:
+TypeScript path alias is configured as:
 
-- **Jest** for test runner
-- **Testing Library** for component testing
-- **jsdom** environment for browser simulation
-- Pre-configured test utilities
+- `@/*` → `src/*`
 
-## 📊 Analytics & Monitoring
+## Internationalization (next-intl)
 
-Integrated analytics tools:
+- Locales are defined in `src/i18n/routing.ts` (`en`, `tr`), default is `en`.
+- Message files live under `messages/`.
+- The Next.js integration is wired via `next.config.ts` using `next-intl/plugin`.
 
-- **Statsig** for feature flags and analytics
-- **Session Replay** for user behavior tracking
-- **Web Analytics** for performance monitoring
+There is also a middleware implementation in `src/proxy.ts` (based on `next-intl/middleware`).
+If you want automatic locale detection/redirects, rename it to `src/middleware.ts` (or `middleware.ts`) so Next.js picks it up.
 
-## 🔧 Configuration Files
+## UI / styling
 
-- `next.config.ts` - Next.js configuration
-- `tailwind.config.ts` - TailwindCSS configuration
-- `tsconfig.json` - TypeScript configuration
-- `eslint.config.mjs` - ESLint configuration
-- `jest.config.ts` - Jest testing configuration
-- `components.json` - shadcn/ui configuration
+- Global styles: `src/styles/globals.css`
+- Theme tokens: `src/styles/themes.css` (used by `next-themes`)
+- UI primitives (Button, Dialog, etc.): `src/shared/ui/primitives/`
+- Small React UI helpers (e.g. theme toggle): `src/shared/ui/react/`
 
-## 🚀 Deployment
+Note: `components.json` exists for shadcn/ui tooling, but this repo’s current UI paths live under `src/shared/ui/*`.
 
-### Vercel (Recommended)
+## Services
 
-1. Push your code to GitHub
-2. Connect your repository to [Vercel](https://vercel.com)
-3. Deploy with one click
+- HTTP: `src/services/http/client.ts`
+  - Uses `fetch` and supports request/response interceptors.
+  - Adds `Authorization: Bearer <token>` if `getAccessToken()` returns a cookie token.
+  - Uses `API_URL` when you call it with a relative URL.
+- Auth token helpers: `src/services/auth/token.service.ts` (cookie-based)
+- Logger: `src/services/logger/*` (Winston, console-oriented)
+- Storage helpers:
+  - `src/services/storage/local-storage.service.ts`
+  - `src/services/storage/session-storage.service.ts`
 
-### Other Platforms
+## Storybook
 
-The project works with any platform that supports Next.js:
+Storybook is configured in `.storybook/` and uses Webpack via `@storybook/nextjs`.
 
-- Netlify
-- Railway
-- DigitalOcean App Platform
-- AWS Amplify
+```bash
+npm run storybook
+```
 
-## 🤝 Contributing
+## Testing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- Jest config: `jest.config.ts` (via `next/jest`)
+- Test setup: `jest.setup.ts`
 
-## 📝 License
+```bash
+npm run test
+```
 
-This project is open source and available under the [MIT License](LICENSE).
+## License
 
-## 🙏 Acknowledgments
-
-- [Next.js](https://nextjs.org/) - The React framework
-- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [shadcn/ui](https://ui.shadcn.com/) - Beautiful component library
-- [next-intl](https://next-intl-docs.vercel.app/) - Internationalization
-- [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components
-
----
-
-<div align="center">
-  <p>Built with ❤️ by <a href="https://github.com/Xjectro">Xjectro</a></p>
-  <p>⭐ Star this repo if you find it helpful!</p>
-</div>
+MIT – see `LICENSE`.
