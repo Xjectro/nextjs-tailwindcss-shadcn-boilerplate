@@ -15,7 +15,7 @@ function resolveUrl(url: string): string {
     throw new Error('API_URL is not set');
   }
 
-  return `${BASE_URL}${url}`;
+  return `${BASE_URL}/v1${url}`;
 }
 
 async function parseResponse<T>(response: Response): Promise<T> {
@@ -88,24 +88,22 @@ async function http<T>(url: string, options: RequestInit = {}): Promise<T> {
   }
 }
 
-export const api = {
-  get: <T>(url: string, options?: RequestInit) =>
-    http<T>(url, { ...options, method: 'GET' }),
+export const getReq = async <T>(url: string, options?: RequestInit) =>
+  http<T>(url, { ...options, method: 'GET' });
 
-  post: <T>(url: string, body?: unknown, options?: RequestInit) =>
-    http<T>(url, {
-      ...options,
-      method: 'POST',
-      body: JSON.stringify(body),
-    }),
+export const postReq = async <T>(url: string, body?: unknown, options?: RequestInit) =>
+  http<T>(url, {
+    ...options,
+    method: 'POST',
+    body: JSON.stringify(body),
+  });
 
-  put: <T>(url: string, body?: unknown, options?: RequestInit) =>
-    http<T>(url, {
-      ...options,
-      method: 'PUT',
-      body: JSON.stringify(body),
-    }),
+export const putReq = async <T>(url: string, body?: unknown, options?: RequestInit) =>
+  http<T>(url, {
+    ...options,
+    method: 'PUT',
+    body: JSON.stringify(body),
+  });
 
-  delete: <T>(url: string, options?: RequestInit) =>
-    http<T>(url, { ...options, method: 'DELETE' }),
-};
+export const deleteReq = async <T>(url: string, options?: RequestInit) =>
+  http<T>(url, { ...options, method: 'DELETE' });
