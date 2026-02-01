@@ -14,18 +14,18 @@ export const requestInterceptor: RequestInterceptor = async (
   const token = await getAccessToken();
 
   const headers = new Headers(init.headers);
+  let body = init.body;
 
   if (token) {
     headers.set('Authorization', `Bearer ${token}`);
   }
 
-  // Only set JSON content-type when we actually send a JSON string body.
-  // Avoid breaking FormData / file uploads.
-  if (
-    typeof init.body === 'string' &&
-    !headers.has('Content-Type') &&
-    !headers.has('content-type')
-  ) {
+  if (body instanceof FormData) {
+    headers.delete('Content-Type');
+  } else if (typeof body === 'object' && body !== null) {
+    headers.set('Content-Type', 'application/json');
+    body = JSON.stringify(body);
+  } else if (typeof body === 'string') {
     headers.set('Content-Type', 'application/json');
   }
 
@@ -33,6 +33,7 @@ export const requestInterceptor: RequestInterceptor = async (
     input,
     {
       ...init,
+      body,
       headers,
       credentials: init.credentials ?? 'include',
     },
@@ -40,6 +41,13 @@ export const requestInterceptor: RequestInterceptor = async (
 };
 
 export const responseInterceptor: ResponseInterceptor = async (response) => {
+  /**
+   *   if (response.status === 401) {
+      await clearAccessToken();
+      redirect('/login');
+    }
+   */
+
   if (!response.ok) {
     throw response;
   }

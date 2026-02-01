@@ -91,19 +91,28 @@ async function http<T>(url: string, options: RequestInit = {}): Promise<T> {
 export const getReq = async <T>(url: string, options?: RequestInit) =>
   http<T>(url, { ...options, method: 'GET' });
 
-export const postReq = async <T>(url: string, body?: unknown, options?: RequestInit) =>
+export const postReq = async <T>(
+  url: string,
+  body?: unknown,
+  options?: RequestInit,
+) =>
   http<T>(url, {
     ...options,
     method: 'POST',
-    body: JSON.stringify(body),
+    body: body as BodyInit | null | undefined,
   });
 
-export const putReq = async <T>(url: string, body?: unknown, options?: RequestInit) =>
-  http<T>(url, {
+export const putReq = async <T>(
+  url: string,
+  body?: unknown,
+  options?: RequestInit,
+) => {
+  return http<T>(url, {
     ...options,
     method: 'PUT',
     body: JSON.stringify(body),
   });
+};
 
 export const deleteReq = async <T>(url: string, options?: RequestInit) =>
   http<T>(url, { ...options, method: 'DELETE' });

@@ -6,18 +6,41 @@ export type ApiError = {
 };
 
 export async function handleApiError(error: unknown): Promise<ApiError> {
-  // fetch response error
   if (error instanceof Response) {
     let message = 'Something went wrong';
+    let code: string | undefined;
+    let details: unknown;
+    let errors: any;
+    let title: string | undefined;
+    let traceId: string | undefined;
 
     try {
       const data = await error.json();
-      message = data?.message || message;
+      message = data?.message || data?.title || message;
+      code = data?.code;
+      details = data?.details || data;
+      errors = data?.errors;
+      title = data?.title;
+      traceId = data?.traceId;
+      if (errors && typeof errors === 'object') {
+        const errorMessages = Object.entries(errors)
+          .map(
+            ([field, msgs]) =>
+              `${field}: ${Array.isArray(msgs) ? msgs.join(', ') : msgs}`,
+          )
+          .join(' | ');
+        message += ` (${errorMessages})`;
+      }
     } catch {}
 
     return {
       status: error.status,
       message,
+      code,
+      details,
+      ...(errors ? { errors } : {}),
+      ...(title ? { title } : {}),
+      ...(traceId ? { traceId } : {}),
     };
   }
 

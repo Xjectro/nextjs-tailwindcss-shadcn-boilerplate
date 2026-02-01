@@ -11,7 +11,9 @@
 
 import createMiddleware from 'next-intl/middleware';
 
+import { NextRequest } from 'next/server';
 import { routing } from './i18n/routing';
+import { CACHE_ID_KEY } from './services/auth/cache.service';
 
 /**
  * Create and export the internationalization middleware
@@ -22,7 +24,25 @@ import { routing } from './i18n/routing';
  * - Handle locale switching
  * - Preserve locale preference in cookies
  */
-export default createMiddleware(routing);
+const REVALIDATION_LIMIT = 10;
+
+export default async function proxy(request: NextRequest) {
+  let cacheIdCookie = request.cookies.get(CACHE_ID_KEY);
+  let cacheId = cacheIdCookie?.value || crypto.randomUUID();
+
+  const intlResponse = await createMiddleware(routing)(request);
+
+  if (!cacheIdCookie) {
+    intlResponse.cookies.set(CACHE_ID_KEY, cacheId, {
+      maxAge: 60 * 60 * 24,
+      httpOnly: true,
+      sameSite: 'strict',
+      secure: process.env.NODE_ENV === 'production',
+    });
+  }
+
+  return intlResponse;
+}
 
 /**
  * Middleware configuration
