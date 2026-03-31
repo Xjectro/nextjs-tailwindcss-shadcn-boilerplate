@@ -1,4 +1,4 @@
-# my-app
+# nextjs-boilerplate
 
 ## 0.2.0
 

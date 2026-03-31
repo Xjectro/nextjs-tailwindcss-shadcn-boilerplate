@@ -110,9 +110,20 @@ export const putReq = async <T>(
   return http<T>(url, {
     ...options,
     method: 'PUT',
-    body: JSON.stringify(body),
+    body: body as BodyInit | null | undefined,
   });
 };
+
+export const patchReq = async <T>(
+  url: string,
+  body?: unknown,
+  options?: RequestInit,
+) =>
+  http<T>(url, {
+    ...options,
+    method: 'PATCH',
+    body: body as BodyInit | null | undefined,
+  });
 
 export const deleteReq = async <T>(url: string, options?: RequestInit) =>
   http<T>(url, { ...options, method: 'DELETE' });

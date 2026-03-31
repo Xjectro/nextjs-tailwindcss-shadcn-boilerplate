@@ -1,1 +1,23 @@
-{}
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home",
+    "notFound": "Page not found",
+    "notFoundDescription": "The page you are looking for does not exist."
+  },
+  "metadata": {
+    "root": {
+      "siteName": "Next.js Boilerplate",
+      "titleTemplate": "%s | Next.js Boilerplate",
+      "defaultTitle": "Next.js Boilerplate — Modern Web Application Starter",
+      "defaultDescription": "A production-ready boilerplate built with Next.js 16, TailwindCSS 4, ShadCN UI, TypeScript 5, and next-intl. Start building scalable, fast, and accessible web applications."
+    },
+    "home": {
+      "title": "Home",
+      "description": "A modern, production-ready boilerplate with Next.js, TailwindCSS, and ShadCN UI. Build scalable web applications with dark mode, i18n, and beautiful components.",
+      "keywords": "nextjs, tailwindcss, shadcn, boilerplate, react, typescript, starter template"
+    }
+  }
+}

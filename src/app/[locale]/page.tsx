@@ -1,12 +1,10 @@
-/**
- * Home Page Component
- *
- * The main landing page that demonstrates the boilerplate features
- * including theme switching and internationalization.
- */
-
 import { Link } from '@/i18n/navigation';
-import { buildSEO } from '@/shared/lib/seo';
+import {
+  createPageSeo,
+  getPageSeoData,
+  jsonLd,
+  JsonLdScript,
+} from '@/shared/lib/seo';
 import { Button } from '@/shared/ui/primitives/button';
 import {
   Card,
@@ -18,20 +16,18 @@ import {
 import { ThemeToggle } from '@/shared/ui/react/theme-toggle';
 import { Fragment } from 'react';
 
-export const metadata = buildSEO({
-  title: 'Home - Next.js TailwindCSS ShadCN Boilerplate',
-  description:
-    'Welcome to the Next.js TailwindCSS ShadCN Boilerplate. A modern, production-ready boilerplate with Next.js 15, TailwindCSS 4, ShadCN UI, and internationalization.',
-});
+// One-liner: auto-reads title/description/keywords from messages['home']
+export function generateMetadata() {
+  return createPageSeo('home');
+}
 
-/**
- * Home Page
- *
- * Displays a welcome message and demonstrates the theme toggle functionality.
- */
-export default function HomePage() {
+export default async function HomePage() {
+  const seo = await getPageSeoData('home');
+
   return (
     <Fragment>
+      <JsonLdScript data={jsonLd.website(seo)} />
+
       <div className="min-h-screen bg-background text-foreground">
         <div className="container mx-auto px-4 py-8">
           {/* Header with Theme Toggle */}

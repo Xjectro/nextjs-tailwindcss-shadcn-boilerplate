@@ -1,9 +1,6 @@
-/**
- * Root Layout
- */
-
 import { routing } from '@/i18n/routing';
 import { NavigationEvents } from '@/shared/layout/navigation-events';
+import { createRootSeo } from '@/shared/lib/seo';
 import { ClientProviders } from '@/shared/providers/client-provider';
 import { ServerProviders } from '@/shared/providers/server-providers';
 import { Layout } from '@/shared/ui/react/design-system';
@@ -15,29 +12,24 @@ type Props = {
   children: React.ReactNode;
 };
 
-/**
- * Generate static params for all supported locales
- * This enables static generation at build time for all locales
- */
+// Site-wide default metadata — all pages inherit these via title.template etc.
+export const generateMetadata = createRootSeo({
+  // twitterHandle: '@yourhandle',
+  // ogImage: '/og-default.png',
+  // verification: { google: '...', yandex: '...' },
+});
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-/**
- * Localized layout component
- * Validates locale and provides i18n context to all child components
- */
 export default async function RootLayout({ children }: Props) {
-  // Await params as required by Next.js 15
   const locale = await getLocale();
 
-  // Validate that the incoming locale is valid
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as typeof routing.locales[number])) {
     notFound();
   }
 
-  // Enable static rendering for this locale
   setRequestLocale(locale);
 
   return (

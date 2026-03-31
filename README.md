@@ -104,9 +104,6 @@ Note: `components.json` exists for shadcn/ui tooling, but this repo’s current 
   - Uses `API_URL` when you call it with a relative URL.
 - Auth token helpers: `src/services/auth/token.service.ts` (cookie-based)
 - Logger: `src/services/logger/*` (Winston, console-oriented)
-- Storage helpers:
-  - `src/services/storage/local-storage.service.ts`
-  - `src/services/storage/session-storage.service.ts`
 
 ## Storybook
 
