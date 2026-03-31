@@ -17,7 +17,9 @@
  * @see https://vercel.com/docs/observability/runtime-logs
  */
 
-// TODO: Cloud logging integration
+
+// Sentry entegrasyonu
+import * as Sentry from '@sentry/nextjs';
 
 import winston from 'winston';
 import { LOG_COLORS, LOG_LEVELS, getLogLevel } from './logger.constants';
@@ -109,11 +111,13 @@ export function logError(
       error: error.name,
       stack: error.stack,
     });
+    Sentry.captureException(error, { extra: context });
   } else {
     logger.error('Unknown error occurred', {
       ...context,
       error: String(error),
     });
+    Sentry.captureMessage('Unknown error occurred', { extra: { ...context, error: String(error) } });
   }
 }
 
