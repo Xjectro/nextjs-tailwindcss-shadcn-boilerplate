@@ -16,7 +16,7 @@ import {
 import { ThemeToggle } from '@/shared/ui/react/theme-toggle';
 import { Fragment } from 'react';
 
-// One-liner: auto-reads title/description/keywords from messages['home']
+// One-liner: auto-reads title/description/keywords from messages['metadata.home']
 export function generateMetadata() {
   return createPageSeo('home');
 }
