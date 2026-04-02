@@ -15,23 +15,43 @@
 import { defineRouting } from 'next-intl/routing';
 
 /**
- * Routing configuration for internationalization
+ * List of supported languages with metadata for SEO and UI purposes.
+ * Each language includes:
+ * - code: The locale code used in URLs and locale detection (e.g., 'en')
+ * - ogLocale: The corresponding OpenGraph locale for SEO (e.g., 'en_US')
+ * - name: The human-readable name of the language (e.g., 'English')
  *
- * Locales:
- * - 'en': English (default)
- * - 'tr': Turkish
+ * This structure allows us to easily manage locales and their associated
+ * metadata in one place, improving maintainability and consistency across
+ * the application.
+ */
+export const languages = [
+  {
+    code: 'en',
+    ogLocale: 'en_US',
+    name: 'English',
+  },
+  {
+    code: 'tr',
+    ogLocale: 'tr_TR',
+    name: 'Türkçe',
+  },
+];
+
+/**
+ * Routing configuration for next-intl, defining supported locales and default locale.
+ * The `defineRouting` function from next-intl is used to create a routing configuration
+ * object that can be consumed by the middleware and other parts of the application.
  *
- * To add more locales:
- * 1. Add locale code to `locales` array
- * 2. Create corresponding message file in `/messages/{locale}.json`
- * 3. Update TypeScript types if using type safety
+ * The `localePrefix` strategy is set to 'as-needed' to provide cleaner URLs for the default locale
+ * while still supporting explicit locale prefixes for non-default locales, which is beneficial for SEO.
  */
 export const routing = defineRouting({
   /**
    * List of all supported locales
    * Order matters: first locale is used as fallback in some cases
    */
-  locales: ['en', 'tr'],
+  locales: languages.map((lang) => lang.code),
 
   /**
    * Default locale used when:
@@ -39,7 +59,7 @@ export const routing = defineRouting({
    * - User's preferred locale is not supported
    * - Locale detection fails
    */
-  defaultLocale: 'en',
+  defaultLocale: languages[0].code,
 
   /**
    * Locale prefix strategy

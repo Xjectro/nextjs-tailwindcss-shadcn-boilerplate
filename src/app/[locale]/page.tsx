@@ -1,6 +1,6 @@
 import { Link } from '@/i18n/navigation';
 import {
-  createPageSeo,
+  createPageMetadata,
   getPageSeoData,
   jsonLd,
   JsonLdScript,
@@ -16,10 +16,8 @@ import {
 import { ThemeToggle } from '@/shared/ui/react/theme-toggle';
 import { Fragment } from 'react';
 
-// One-liner: auto-reads title/description/keywords from messages['metadata.home']
-export function generateMetadata() {
-  return createPageSeo('home');
-}
+// Auto-reads title/description/keywords from messages.metadata.home
+export const generateMetadata = createPageMetadata('home');
 
 export default async function HomePage() {
   const seo = await getPageSeoData('home');

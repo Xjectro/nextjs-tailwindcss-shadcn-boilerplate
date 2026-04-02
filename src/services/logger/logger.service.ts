@@ -17,7 +17,6 @@
  * @see https://vercel.com/docs/observability/runtime-logs
  */
 
-
 // Sentry entegrasyonu
 import * as Sentry from '@sentry/nextjs';
 
@@ -117,7 +116,9 @@ export function logError(
       ...context,
       error: String(error),
     });
-    Sentry.captureMessage('Unknown error occurred', { extra: { ...context, error: String(error) } });
+    Sentry.captureMessage('Unknown error occurred', {
+      extra: { ...context, error: String(error) },
+    });
   }
 }
 

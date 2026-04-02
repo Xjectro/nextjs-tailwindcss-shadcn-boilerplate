@@ -4,9 +4,8 @@ import radixPlugin from 'tailwindcss-radix';
 const config = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx}',
-    './src/shared/**/*.{js,ts,jsx,tsx}',
     './src/features/**/*.{js,ts,jsx,tsx}',
-    './src/stories/**/*.{js,ts,jsx,tsx}',
+    './src/shared/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     container: {
@@ -33,7 +32,7 @@ const config = {
           foreground: 'hsl(var(--accent-foreground))',
         },
         background: 'hsl(var(--background))',
-        border: 'hsla(var(--border))',
+        border: 'hsl(var(--border))',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -78,7 +77,7 @@ const config = {
       },
       fontFamily: {
         sans: [
-          'Inter',
+          'Sans',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
@@ -87,7 +86,6 @@ const config = {
           'Ubuntu',
           'sans-serif',
         ],
-        poppins: ['Poppins', 'sans-serif'],
       },
       keyframes: {
         'accordion-slide-up': {
