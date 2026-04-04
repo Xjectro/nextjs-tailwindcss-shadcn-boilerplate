@@ -13,7 +13,7 @@ import createMiddleware from 'next-intl/middleware';
 
 import { NextRequest } from 'next/server';
 import { routing } from './i18n/routing';
-import { CACHE_ID_KEY } from './services/auth/cache.service';
+import { CACHE_ID_KEY } from './services/auth/cache.constants';
 
 /**
  * Create and export the internationalization middleware
@@ -24,8 +24,6 @@ import { CACHE_ID_KEY } from './services/auth/cache.service';
  * - Handle locale switching
  * - Preserve locale preference in cookies
  */
-const REVALIDATION_LIMIT = 10;
-
 export default async function proxy(request: NextRequest) {
   let cacheIdCookie = request.cookies.get(CACHE_ID_KEY);
   let cacheId = cacheIdCookie?.value || crypto.randomUUID();

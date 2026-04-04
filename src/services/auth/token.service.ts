@@ -1,8 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-
-const ACCESS_TOKEN_KEY = 'access_token';
+import { ACCESS_TOKEN_KEY } from './cache.constants';
 
 /**
  * ACCESS TOKEN

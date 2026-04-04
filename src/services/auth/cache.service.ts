@@ -1,8 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-
-export const CACHE_ID_KEY = 'cache_id';
+import { CACHE_ID_KEY } from './cache.constants';
 
 /**
  * CACHE ID
