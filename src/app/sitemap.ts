@@ -11,6 +11,8 @@ import { getBaseUrl } from '@/shared/lib/get-base-url';
  */
 function getAllRoutes(): string[] {
   const appDir = path.join(process.cwd(), 'src/app');
+  const isRouteGroup = (segment: string) =>
+    segment.startsWith('(') && segment.endsWith(')');
 
   function findPageFiles(dir: string, baseRoute = ''): string[] {
     const routes: string[] = [];
@@ -37,7 +39,9 @@ function getAllRoutes(): string[] {
           if (item.name === '[locale]') {
             routes.push(...findPageFiles(fullPath, ''));
           } else {
-            const newRoute = `${baseRoute}/${item.name}`;
+            const newRoute = isRouteGroup(item.name)
+              ? baseRoute
+              : `${baseRoute}/${item.name}`;
             routes.push(...findPageFiles(fullPath, newRoute));
           }
         } else if (
