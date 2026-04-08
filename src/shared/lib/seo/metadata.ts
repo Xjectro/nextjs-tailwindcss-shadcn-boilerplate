@@ -100,7 +100,7 @@ export function createRootMetadata(
       },
 
       alternates: {
-        canonical: baseUrl,
+        canonical: localizedUrl(baseUrl, locale, ''),
         languages: hrefLangs(baseUrl, ''),
       },
 
@@ -182,7 +182,7 @@ export async function buildMetadata(
     }),
 
     openGraph: {
-      title: `${data.title} | ${root.siteName}`,
+      title: data.title,
       description: data.description,
       url,
       type: data.ogType ?? 'website',
@@ -194,7 +194,7 @@ export async function buildMetadata(
 
     twitter: {
       card: 'summary_large_image',
-      title: `${data.title} | ${root.siteName}`,
+      title: data.title,
       description: data.description,
       ...(images && { images: images.map((i) => i.url) }),
     },
