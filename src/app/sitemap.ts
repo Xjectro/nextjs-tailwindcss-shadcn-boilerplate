@@ -77,24 +77,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = getAllRoutes();
   const { locales, defaultLocale } = routing;
 
-  return routes.map((route) => {
-    // Build hrefLang alternates for each route
+  const getUrl = (locale: string, route: string) =>
+    locale === defaultLocale
+      ? `${baseUrl}${route}`
+      : `${baseUrl}/${locale}${route}`;
+
+  return routes.flatMap((route) => {
+    // Build hrefLang alternates shared by all locale entries of this route
     const languages: Record<string, string> = {};
     for (const locale of locales) {
-      languages[locale] =
-        locale === defaultLocale
-          ? `${baseUrl}${route}`
-          : `${baseUrl}/${locale}${route}`;
+      languages[locale] = getUrl(locale, route);
     }
-    // x-default points to the default locale variant
-    languages['x-default'] = `${baseUrl}${route}`;
+    languages['x-default'] = getUrl(defaultLocale, route);
 
-    return {
-      url: `${baseUrl}${route}`,
+    // Generate one sitemap entry per locale
+    return locales.map((locale) => ({
+      url: getUrl(locale, route),
       lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: route === '' ? 'daily' : 'weekly',
+      changeFrequency: (route === '' ? 'daily' : 'weekly') as
+        | 'daily'
+        | 'weekly',
       priority: route === '' ? 1.0 : 0.8,
       alternates: { languages },
-    };
+    }));
   });
 }
