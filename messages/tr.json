@@ -1,21 +1,20 @@
 {
   "common": {
-    "loading": "Yükleniyor...",
-    "error": "Bir hata oluştu",
-    "tryAgain": "Tekrar Dene",
-    "goHome": "Ana Sayfa",
-    "notFound": "Sayfa bulunamadı",
-    "notFoundDescription": "Aradığınız sayfa mevcut değil."
+    "try_again": "Tekrar Dene",
+    "go_home": "Ana Sayfa",
+    "not_found": "Sayfa bulunamadı",
+    "not_found_description": "Aradığınız sayfa mevcut değil.",
+    "something_went_wrong": "Bir şeyler ters gitti",
+    "critical_error": "Kritik bir hata oluştu."
   },
   "metadata": {
     "root": {
-      "siteName": "Next.js Şablon",
-      "titleTemplate": "%s | Next.js Şablon",
-      "defaultTitle": "Next.js Şablon — Modern Web Uygulama Başlangıç Kiti",
-      "defaultDescription": "Next.js 16, TailwindCSS 4, ShadCN UI, TypeScript 5 ve next-intl ile oluşturulmuş üretime hazır bir şablon. Ölçeklenebilir, hızlı ve erişilebilir web uygulamaları geliştirmeye başlayın."
+      "site_name": "Next.js Şablon",
+      "title_template": "%s | Next.js Şablon",
+      "default_title": "Next.js Şablon — Modern Web Uygulama Başlangıç Kiti",
+      "default_description": "Next.js 16, TailwindCSS 4, ShadCN UI, TypeScript 5 ve next-intl ile oluşturulmuş üretime hazır bir şablon. Ölçeklenebilir, hızlı ve erişilebilir web uygulamaları geliştirmeye başlayın."
     },
     "home": {
-      "title": "Ana Sayfa",
       "description": "Next.js, TailwindCSS ve ShadCN UI ile modern, üretime hazır bir şablon. Karanlık mod, çoklu dil desteği ve şık bileşenlerle ölçeklenebilir web uygulamaları oluşturun.",
       "keywords": "nextjs, tailwindcss, shadcn, şablon, react, typescript, başlangıç şablonu"
     }

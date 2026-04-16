@@ -77,7 +77,7 @@ const config = {
       },
       fontFamily: {
         sans: [
-          'Sans',
+          'DM Sans',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',

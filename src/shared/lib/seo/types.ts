@@ -35,7 +35,7 @@ export interface PageMetadataOptions {
 
 /** Explicit data passed to `buildMetadata` for dynamic pages. */
 export interface BuildMetadataInput extends PageMetadataOptions {
-  title: string;
+  title: string | { absolute: string };
   description: string;
   keywords?: string;
 }
@@ -49,6 +49,6 @@ export interface SeoData {
   url: string;
   title: string;
   description: string;
-  siteName: string;
+  site_name: string;
   keywords?: string;
 }

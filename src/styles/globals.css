@@ -4,8 +4,8 @@
 @config '../../tailwind.config.ts';
 
 @font-face {
-  font-family: 'Sans';
-  src: url('/fonts/sans.ttf') format('truetype');
+  font-family: 'DM Sans';
+  src: url('/fonts/dm-sans.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

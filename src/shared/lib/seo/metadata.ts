@@ -23,10 +23,10 @@ import type {
 interface MetadataMessages {
   metadata: {
     root: {
-      siteName: string;
-      titleTemplate: string;
-      defaultTitle: string;
-      defaultDescription: string;
+      site_name: string;
+      title_template: string;
+      default_title: string;
+      default_description: string;
     };
     [pageKey: string]: Record<string, string>;
   };
@@ -59,9 +59,9 @@ export function createRootMetadata(
     return {
       metadataBase: new URL(baseUrl),
 
-      title: { default: root.defaultTitle, template: root.titleTemplate },
-      description: root.defaultDescription,
-      applicationName: root.siteName,
+      title: { default: root.default_title, template: root.title_template },
+      description: root.default_description,
+      applicationName: root.site_name,
       generator: 'Next.js',
       referrer: 'origin-when-cross-origin',
 
@@ -81,17 +81,17 @@ export function createRootMetadata(
         type: 'website',
         locale: ogLocale(locale),
         alternateLocale: alternateOgLocales(locale),
-        siteName: root.siteName,
-        title: { default: root.defaultTitle, template: root.titleTemplate },
-        description: root.defaultDescription,
+        site_name: root.site_name,
+        title: { default: root.default_title, template: root.title_template },
+        description: root.default_description,
         url: baseUrl,
         ...(images && { images }),
       },
 
       twitter: {
         card: 'summary_large_image',
-        title: { default: root.defaultTitle, template: root.titleTemplate },
-        description: root.defaultDescription,
+        title: { default: root.default_title, template: root.title_template },
+        description: root.default_description,
         ...(options.twitterHandle && {
           site: options.twitterHandle,
           creator: options.twitterHandle,
@@ -133,9 +133,13 @@ export function createPageMetadata(
     const meta = getMetadataMessages(messages);
     const page = meta[pageKey] ?? {};
 
+    const title = page.title
+      ? page.title
+      : { absolute: meta.root.default_title };
+
     return buildMetadata({
-      title: page.title ?? meta.root.defaultTitle,
-      description: page.description ?? meta.root.defaultDescription,
+      title,
+      description: page.description ?? meta.root.default_description,
       keywords: page.keywords,
       ...options,
     });
@@ -174,6 +178,9 @@ export async function buildMetadata(
   const url = localizedUrl(baseUrl, locale, pathname);
   const images = normalizeImage(data.image);
 
+  const titleStr =
+    typeof data.title === 'string' ? data.title : data.title.absolute;
+
   const metadata: Metadata = {
     title: data.title,
     description: data.description,
@@ -182,19 +189,19 @@ export async function buildMetadata(
     }),
 
     openGraph: {
-      title: data.title,
+      title: titleStr,
       description: data.description,
       url,
       type: data.ogType ?? 'website',
       locale: ogLocale(locale),
       alternateLocale: alternateOgLocales(locale),
-      siteName: root.siteName,
+      siteName: root.site_name,
       ...(images && { images }),
     },
 
     twitter: {
       card: 'summary_large_image',
-      title: data.title,
+      title: titleStr,
       description: data.description,
       ...(images && { images: images.map((i) => i.url) }),
     },
@@ -235,9 +242,9 @@ export async function getPageSeoData(
     locale,
     baseUrl,
     url,
-    title: page.title ?? meta.root.defaultTitle,
-    description: page.description ?? meta.root.defaultDescription,
-    siteName: meta.root.siteName,
+    title: page.title ?? meta.root.default_title,
+    description: page.description ?? meta.root.default_description,
+    site_name: meta.root.site_name,
     keywords: page.keywords,
   };
 }

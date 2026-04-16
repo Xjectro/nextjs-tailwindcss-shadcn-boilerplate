@@ -10,7 +10,7 @@ export const jsonLd = {
     return {
       '@context': 'https://schema.org' as const,
       '@type': 'WebSite' as const,
-      name: data.siteName,
+      name: data.site_name,
       url: data.url,
       description: data.description,
       inLanguage: data.locale,
@@ -35,7 +35,7 @@ export const jsonLd = {
       inLanguage: data.locale,
       isPartOf: {
         '@type': 'WebSite' as const,
-        name: data.siteName,
+        name: data.site_name,
         url: data.baseUrl,
       },
     };
@@ -67,7 +67,7 @@ export const jsonLd = {
       ...(data.image && { image: data.image }),
       publisher: {
         '@type': 'Organization' as const,
-        name: data.siteName,
+        name: data.site_name,
         url: data.baseUrl,
       },
     };
